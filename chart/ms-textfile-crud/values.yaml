@@ -1,0 +1,3 @@
+DockerRepo: quay.io/ortelius/ms-textfile-crud
+DockerSha: 2e1fad49558a
+DockerTag: deploy-v10.0.0.62-g104a226
