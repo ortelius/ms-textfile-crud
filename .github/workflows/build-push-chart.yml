@@ -87,15 +87,8 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Trigger Rebuild of Main Chart
-        env:
-          REPO_OWNER: ortelius
-          REPO_NAME: ortelius-charts
-          WORKFLOW_FILENAME: generate-main-chart.yml
-        run: |
-          curl \
-            --request POST \
-            --url https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/actions/workflows/$WORKFLOW_FILENAME/dispatches \
-            --header "authorization: Bearer ${{ secrets.HELM_INDEXER_TOKEN }}" \
-            --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"main"}' \
-            --fail
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: generate-main-chart.yml
+          repo: ortelius/ortelius-charts
+          token: ${{ secrets.HELM_INDEXER_TOKEN }}
