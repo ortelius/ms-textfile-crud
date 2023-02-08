@@ -38,12 +38,12 @@ db_conn_retry = 3
 
 # Init FastAPI
 app = FastAPI(
-    title="ortelius-ms-textfile-crud",
+    title=service_name,
     description="TextFile Crud APIs",
     version="1.0.0",
     terms_of_service="http://swagger.io/terms/",
     contact={
-        "email": "xyz@deployhub.com",
+        "email": "notifysupport@deployhub.com",
     },
     license_info={
         "name": "Apache 2.0",
@@ -71,27 +71,8 @@ class StatusMsg(BaseModel):
     service_name: Optional[str] = None
 
 
-@app.get("/health",
-         responses={
-             503: {"model": StatusMsg,
-                   "description": "DOWN Status for the Service",
-                   "content": {
-                       "application/json": {
-                           "example": {"status": 'DOWN'}
-                       },
-                   },
-                   },
-             200: {"model": StatusMsg,
-                   "description": "UP Status for the Service",
-                   "content": {
-                       "application/json": {
-                           "example": {"status": 'UP', "service_name": service_name}
-                       }
-                   },
-                   },
-         }
-         )
-async def health(response: Response):
+@app.get("/health")
+async def health(response: Response) -> StatusMsg:
     try:
         with engine.connect() as connection:
             conn = connection.connection
@@ -107,7 +88,6 @@ async def health(response: Response):
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
         return {"status": 'DOWN'}
 # end health check
-
 
 def get_mimetype(filetype, dstr):
     if (filetype.lower() == 'readme'):
@@ -131,27 +111,7 @@ class Message(BaseModel):
     detail: str
 
 
-@app.get('/msapi/textfile',
-         responses={
-             401: {"model": Message,
-                   "description": "Authorization Status",
-                   "content": {
-                       "application/json": {
-                           "example": {"detail": "Authorization failed"}
-                       },
-                   },
-                   },
-             500: {"model": Message,
-                   "description": "SQL Error",
-                   "content": {
-                       "application/json": {
-                           "example": {"detail": "SQL Error: 30x"}
-                       },
-                   },
-                   },
-             200: {"description": "File Content"},
-         }
-         )
+@app.get('/msapi/textfile')
 async def getFileContent(request: Request, response: Response, compid: int = Query(..., ge=1), filetype: str = Query(..., regex="^(?!\s*$).+")):
     try:
         result = requests.get(validateuser_url + "/msapi/validateuser", cookies=request.cookies)
@@ -219,34 +179,7 @@ class FileRequest(BaseModel):
     file: List[str]
 
 
-@app.post('/msapi/textfile',
-          responses={
-              401: {"model": Message,
-                    "description": "Authorization Status",
-                    "content": {
-                        "application/json": {
-                            "example": {"detail": "Authorization failed"}
-                        },
-                    },
-                    },
-              500: {"model": Message,
-                    "description": "SQL Error",
-                    "content": {
-                        "application/json": {
-                            "example": {"detail": "SQL Error: 30x"}
-                        },
-                    },
-                    },
-              200: {"model": Message,
-                    "description": "Components Updated",
-                    "content": {
-                        "application/json": {
-                            "example": {"detail": "components updated succesfully"}
-                        },
-                    },
-                    },
-          }
-          )
+@app.post('/msapi/textfile')
 async def saveFileContent(request: Request, fileRequest: FileRequest):
     try:
         result = requests.get(validateuser_url + "/msapi/validateuser", cookies=request.cookies)
