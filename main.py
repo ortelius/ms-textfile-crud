@@ -131,25 +131,25 @@ async def getFileContent(request: Request, response: Response, compid: int = Que
             try:
                 with engine.connect() as connection:
                     conn = connection.connection
-        
+
                     if (filetype is None and 'swagger' in request.path_params):
                         filetype = 'swagger'
-        
+
                     cursor = conn.cursor()
                     sql = 'SELECT * FROM dm.dm_textfile WHERE compid = %s AND filetype = %s Order by lineno'
                     cursor.execute(sql, [compid, filetype])
                     records = cursor.fetchall()
                     cursor.close()
                     conn.commit()
-        
+
                     file = []
                     for rec in records:
                         file.append(rec[3])
-        
+
                     encoded_str = "".join(file)
                     decoded_str = base64.b64decode(encoded_str).decode("utf-8")
                     return Response(content=decoded_str, media_type=get_mimetype(filetype, decoded_str))
-                
+
             except (InterfaceError, OperationalError) as ex:
                 if attempt < no_of_retry:
                     sleep_for = 0.2
@@ -159,13 +159,13 @@ async def getFileContent(request: Request, response: Response, compid: int = Que
                             ex, sleep_for, attempt, no_of_retry
                         )
                     )
-                    #200ms of sleep time in cons. retry calls 
+                    #200ms of sleep time in cons. retry calls
                     sleep(sleep_for)
                     attempt += 1
                     continue
                 else:
-                    raise     
-                    
+                    raise
+
     except HTTPException:
         raise
     except Exception as err:
@@ -192,7 +192,7 @@ async def saveFileContent(request: Request, fileRequest: FileRequest):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Authorization Failed:" + str(err)) from None
 
     try:
-        
+
         #Retry logic for failed query
         no_of_retry = db_conn_retry
         attempt = 1;
@@ -200,29 +200,29 @@ async def saveFileContent(request: Request, fileRequest: FileRequest):
             try:
                 with engine.connect() as connection:
                     conn = connection.connection
-        
+
                     line_no = 1
                     data_list = []
                     for line in fileRequest.file:
                         d = (fileRequest.compid, fileRequest.filetype, line_no, line)
                         line_no += 1
                         data_list.append(d)
-        
+
                     cursor = conn.cursor()
                     # pre-processing
                     pre_process = 'DELETE FROM dm.dm_textfile WHERE compid = %s AND filetype = %s;'
                     cursor.execute(pre_process, [fileRequest.compid, fileRequest.filetype])
-        
+
                     if len(data_list) > 0:
                         records_list_template = ','.join(['%s'] * len(data_list))
                         sql = 'INSERT INTO dm.dm_textfile(compid, filetype, lineno, base64str) VALUES {}'.format(records_list_template)
                         cursor.execute(sql, data_list)
-        
+
                     cursor.close()
                     conn.commit()
-        
+
                     return Message(detail='components updated succesfully')
-                
+
             except (InterfaceError, OperationalError) as ex:
                 if attempt < no_of_retry:
                     sleep_for = 0.2
@@ -232,13 +232,13 @@ async def saveFileContent(request: Request, fileRequest: FileRequest):
                             ex, sleep_for, attempt, no_of_retry
                         )
                     )
-                    #200ms of sleep time in cons. retry calls 
+                    #200ms of sleep time in cons. retry calls
                     sleep(sleep_for)
                     attempt += 1
                     continue
                 else:
                     raise
-                
+
     except HTTPException:
         raise
     except Exception as err:
