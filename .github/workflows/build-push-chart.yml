@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths-ignore:
-      - "chart/**"
+      - "chart/ms-textfile-crud/Chart.yaml"
+      - "chart/ms-textfile-crud/values.yaml"
 jobs:
   release:
     runs-on: ubuntu-latest
