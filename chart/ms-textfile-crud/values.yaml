@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
   repository: quay.io/ortelius/ms-textfile-crud
-  tag: main-v10.0.17-gb64f3c
-  sha: sha256:0fc4a9d530bc9476d8cd0ef5e3b68cf5fe72c0fcc214a7cc98a1fc277bcd9278
+  tag: main-v10.0.18-g255e1c
+  sha: sha256:e47026c03485ccc2cacd67af7776d94c23c30fef1596e03af28fcce84ace2dd6
   pullPolicy: Always
