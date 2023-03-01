@@ -29,7 +29,7 @@ import yaml
 from fastapi import (FastAPI, HTTPException, Query, Request, Response,
                      responses, status)
 from pydantic import BaseModel, Field
-from sqlalchemy import create_engine
+from sqlalchemy import sql, create_engine
 from sqlalchemy.exc import InterfaceError, OperationalError, StatementError
 
 # Init Globals
@@ -136,8 +136,8 @@ async def getFileContent(request: Request, response: Response, compid: int = Que
                         filetype = 'swagger'
 
                     cursor = conn.cursor()
-                    sql = 'SELECT * FROM dm.dm_textfile WHERE compid = %s AND filetype = %s Order by lineno'
-                    cursor.execute(sql, [compid, filetype])
+                    sqlstmt = 'SELECT * FROM dm.dm_textfile WHERE compid = %s AND filetype = %s Order by lineno'
+                    cursor.execute(sql.text(sqlstmt), [compid, filetype])
                     records = cursor.fetchall()
                     cursor.close()
                     conn.commit()
@@ -215,8 +215,8 @@ async def saveFileContent(request: Request, fileRequest: FileRequest):
 
                     if len(data_list) > 0:
                         records_list_template = ','.join(['%s'] * len(data_list))
-                        sql = 'INSERT INTO dm.dm_textfile(compid, filetype, lineno, base64str) VALUES {}'.format(records_list_template)
-                        cursor.execute(sql, data_list)
+                        sqlstmt = 'INSERT INTO dm.dm_textfile(compid, filetype, lineno, base64str) VALUES {}'.format(records_list_template)
+                        cursor.execute(sql.text(sqlstmt), data_list)
 
                     cursor.close()
                     conn.commit()
