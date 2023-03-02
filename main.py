@@ -137,7 +137,7 @@ async def getFileContent(request: Request, response: Response, compid: int = Que
 
                     cursor = conn.cursor()
                     sqlstmt = 'SELECT * FROM dm.dm_textfile WHERE compid = %s AND filetype = %s Order by lineno'
-                    cursor.execute(sql.text(sqlstmt), [compid, filetype])
+                    cursor.execute(sqlstmt, [compid, filetype])
                     records = cursor.fetchall()
                     cursor.close()
                     conn.commit()
@@ -216,7 +216,7 @@ async def saveFileContent(request: Request, fileRequest: FileRequest):
                     if len(data_list) > 0:
                         records_list_template = ','.join(['%s'] * len(data_list))
                         sqlstmt = 'INSERT INTO dm.dm_textfile(compid, filetype, lineno, base64str) VALUES {}'.format(records_list_template)
-                        cursor.execute(sql.text(sqlstmt), data_list)
+                        cursor.execute(sqlstmt, data_list)
 
                     cursor.close()
                     conn.commit()
