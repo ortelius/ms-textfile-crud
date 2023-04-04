@@ -1,0 +1,2 @@
+ignore = ["E722"]
+line-length = 200
