@@ -24,7 +24,7 @@ import requests
 import uvicorn
 import yaml
 from fastapi import FastAPI, HTTPException, Query, Request, Response, status
-from pydantic import BaseModel, Field  # pylint: disable=E0611
+from pydantic import BaseModel  # pylint: disable=E0611
 from sqlalchemy import create_engine
 from sqlalchemy.exc import InterfaceError, OperationalError
 
@@ -140,7 +140,7 @@ class Message(BaseModel):
 async def get_file_content(
     request: Request,
     compid: int = Query(..., ge=1),
-    filetype: str = Query(..., regex="^(?!\\s*$).+"),
+    filetype: str | None = None,
 ):
     try:
         result = requests.get(validateuser_url + "/msapi/validateuser", cookies=request.cookies, timeout=5)
@@ -213,8 +213,8 @@ async def get_file_content(
 
 
 class FileRequest(BaseModel):
-    compid: int = Field(..., ge=1)
-    filetype: str = Field(..., regex="^(?!\\s*$).+")
+    compid: int
+    filetype: str
     file: List[str]
 
 
