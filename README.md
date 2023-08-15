@@ -1,4 +1,12 @@
 # ortelius-ms-textfile-crud
+![Release](https://img.shields.io/github/v/release/ortelius/ms-textfile-crud?sort=semver)
+![license](https://img.shields.io/github/license/ortelius/ms-textfile-crud)
+
+![Build](https://img.shields.io/github/actions/workflow/status/ortelius/ms-textfile-crud/build-push-chart.yml)
+[![MegaLinter](https://github.com/ortelius/ms-textfile-crud/workflows/MegaLinter/badge.svg?branch=main)](https://github.com/ortelius/ms-textfile-crud/actions?query=workflow%3AMegaLinter+branch%3Amain)
+![CodeQL](https://github.com/ortelius/ms-textfile-crud/workflows/CodeQL/badge.svg)
+[![OpenSSF
+-Scorecard](https://api.securityscorecards.dev/projects/github.com/ortelius/textfile-crud/badge)](https://api.securityscorecards.dev/projects/github.com/ortelius/ms-textfile-crud)
 
 ## Fixed CVEs
 
