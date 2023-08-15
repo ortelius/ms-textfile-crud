@@ -8,6 +8,8 @@
 [![OpenSSF
 -Scorecard](https://api.securityscorecards.dev/projects/github.com/ortelius/textfile-crud/badge)](https://api.securityscorecards.dev/projects/github.com/ortelius/ms-textfile-crud)
 
+![Discord](https://img.shields.io/discord/722468819091849316)
+
 ## Fixed CVEs
 
 - 2/27/23 - [CVE-2023-25139](https://www.openwall.com/lists/oss-security/2023/02/10/1)
