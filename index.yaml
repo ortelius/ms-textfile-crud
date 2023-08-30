@@ -13,6 +13,17 @@ entries:
     - https://github.com/ortelius/ms-textfile-crud/releases/download/ms-textfile-crud-10.0.196/ms-textfile-crud-10.0.196.tgz
     version: 10.0.196
   - apiVersion: v2
+    appVersion: 10.0.195
+    created: "2023-08-30T22:39:43.443659066Z"
+    description: Dependency Packages
+    digest: edb7f52d1628a4be3bfc38e6bc026036a27521fd50442704bd35bd1a83766fd3
+    icon: https://ortelius.github.io/ortelius-charts/logo.png
+    name: ms-textfile-crud
+    type: application
+    urls:
+    - https://github.com/ortelius/ms-textfile-crud/releases/download/ms-textfile-crud-10.0.195/ms-textfile-crud-10.0.195.tgz
+    version: 10.0.195
+  - apiVersion: v2
     appVersion: 10.0.194
     created: "2023-08-30T22:37:05.478660772Z"
     description: Dependency Packages
@@ -1112,4 +1123,4 @@ entries:
     urls:
     - https://github.com/ortelius/ortelius-ms-textfile-crud/releases/download/ms-textfile-crud-10.0.0-build.41/ms-textfile-crud-10.0.0-build.41.tgz
     version: 10.0.0-build.41
-generated: "2023-08-30T22:38:47.101205532Z"
+generated: "2023-08-30T22:39:43.443224057Z"
