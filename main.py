@@ -89,8 +89,8 @@ engine = create_engine(
 
 # health check endpoint
 class StatusMsg(BaseModel):
-    status: str
-    service_name: str
+    status: str = ""
+    service_name: str = ""
 
 
 @app.get("/health", tags=["health"])
@@ -136,7 +136,7 @@ def get_mimetype(filetype, dstr):
 
 
 class Message(BaseModel):
-    detail: str
+    detail: str = ""
 
 
 @app.get("/msapi/textfile", tags=["textfile"])
@@ -216,9 +216,9 @@ async def get_file_content(
 
 
 class FileRequest(BaseModel):
-    compid: int
-    filetype: str
-    file: List[str]
+    compid: int = 0
+    filetype: str = ""
+    file: List[str] = []
 
 
 @app.post("/msapi/textfile", tags=["textfile-post"])
