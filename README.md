@@ -6,7 +6,7 @@
 [![MegaLinter](https://github.com/ortelius/ms-textfile-crud/workflows/MegaLinter/badge.svg?branch=main)](https://github.com/ortelius/ms-textfile-crud/actions?query=workflow%3AMegaLinter+branch%3Amain)
 ![CodeQL](https://github.com/ortelius/ms-textfile-crud/workflows/CodeQL/badge.svg)
 [![OpenSSF
--Scorecard](https://api.securityscorecards.dev/projects/github.com/ortelius/textfile-crud/badge)](https://api.securityscorecards.dev/projects/github.com/ortelius/ms-textfile-crud)
+-Scorecard](https://api.securityscorecards.dev/projects/github.com/ortelius/ms-textfile-crud/badge)](https://api.securityscorecards.dev/projects/github.com/ortelius/ms-textfile-crud)
 
 ![Discord](https://img.shields.io/discord/722468819091849316)
 
