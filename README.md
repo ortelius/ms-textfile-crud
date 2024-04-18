@@ -10,7 +10,175 @@
 
 ![Discord](https://img.shields.io/discord/722468819091849316)
 
-## Fixed CVEs
+> Version 10.0.0
 
-- 2/27/23 - [CVE-2023-25139](https://www.openwall.com/lists/oss-security/2023/02/10/1)
-- 3/28/23 - [CVE-2023-0464](https://avd.aquasec.com/nvd/2023/cve-2023-0464/)
+RestAPI endpoint for retrieving SBOM data to a component
+
+## Path Table
+
+| Method | Path | Description |
+| --- | --- | --- |
+| GET | [/health](#gethealth) | Health |
+| GET | [/msapi/textfile](#getmsapitextfile) | Get File Content |
+| POST | [/msapi/textfile](#postmsapitextfile) | Save File Content |
+
+## Reference Table
+
+| Name | Path | Description |
+| --- | --- | --- |
+| FileRequest | [#/components/schemas/FileRequest](#componentsschemasfilerequest) |  |
+| HTTPValidationError | [#/components/schemas/HTTPValidationError](#componentsschemashttpvalidationerror) |  |
+| StatusMsg | [#/components/schemas/StatusMsg](#componentsschemasstatusmsg) |  |
+| ValidationError | [#/components/schemas/ValidationError](#componentsschemasvalidationerror) |  |
+
+## Path Details
+
+***
+
+### [GET]/health
+
+- Summary  
+Health
+
+- Description  
+This health check end point used by Kubernetes
+
+#### Responses
+
+- 200 Successful Response
+
+`application/json`
+
+```ts
+{
+  status?: string
+  service_name?: string
+}
+```
+
+***
+
+### [GET]/msapi/textfile
+
+- Summary  
+Get File Content
+
+#### Parameters(Query)
+
+```ts
+compid: integer
+```
+
+```ts
+filetype?: Partial(string) & Partial(null)
+```
+
+#### Responses
+
+- 200 Successful Response
+
+`application/json`
+
+```ts
+{}
+```
+
+- 422 Validation Error
+
+`application/json`
+
+```ts
+{
+  detail: {
+    loc?: Partial(string) & Partial(integer)[]
+    msg: string
+    type: string
+  }[]
+}
+```
+
+***
+
+### [POST]/msapi/textfile
+
+- Summary  
+Save File Content
+
+#### RequestBody
+
+- application/json
+
+```ts
+{
+  compid?: integer
+  filetype?: string
+  file?: string[]
+}
+```
+
+#### Responses
+
+- 200 Successful Response
+
+`application/json`
+
+```ts
+{}
+```
+
+- 422 Validation Error
+
+`application/json`
+
+```ts
+{
+  detail: {
+    loc?: Partial(string) & Partial(integer)[]
+    msg: string
+    type: string
+  }[]
+}
+```
+
+## References
+
+### #/components/schemas/FileRequest
+
+```ts
+{
+  compid?: integer
+  filetype?: string
+  file?: string[]
+}
+```
+
+### #/components/schemas/HTTPValidationError
+
+```ts
+{
+  detail: {
+    loc?: Partial(string) & Partial(integer)[]
+    msg: string
+    type: string
+  }[]
+}
+```
+
+### #/components/schemas/StatusMsg
+
+```ts
+{
+  status?: string
+  service_name?: string
+}
+```
+
+### #/components/schemas/ValidationError
+
+```ts
+{
+  loc?: Partial(string) & Partial(integer)[]
+  msg: string
+  type: string
+}
+```
