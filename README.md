@@ -1,6 +1,6 @@
 # ortelius-ms-textfile-crud
 ![Release](https://img.shields.io/github/v/release/ortelius/ms-textfile-crud?sort=semver)
-![license](https://img.shields.io/github/license/ortelius/ms-textfile-crud)
+![license](https://img.shields.io/github/license/ortelius/.github)
 
 ![Build](https://img.shields.io/github/actions/workflow/status/ortelius/ms-textfile-crud/build-push-chart.yml)
 [![MegaLinter](https://github.com/ortelius/ms-textfile-crud/workflows/MegaLinter/badge.svg?branch=main)](https://github.com/ortelius/ms-textfile-crud/actions?query=workflow%3AMegaLinter+branch%3Amain)
@@ -37,10 +37,10 @@ RestAPI endpoint for retrieving SBOM data to a component
 
 ### [GET]/health
 
-- Summary  
+- Summary
 Health
 
-- Description  
+- Description
 This health check end point used by Kubernetes
 
 #### Responses
@@ -60,7 +60,7 @@ This health check end point used by Kubernetes
 
 ### [GET]/msapi/textfile
 
-- Summary  
+- Summary
 Get File Content
 
 #### Parameters(Query)
@@ -101,7 +101,7 @@ filetype?: Partial(string) & Partial(null)
 
 ### [POST]/msapi/textfile
 
-- Summary  
+- Summary
 Save File Content
 
 #### RequestBody
