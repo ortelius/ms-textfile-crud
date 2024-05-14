@@ -37,10 +37,10 @@ RestAPI endpoint for retrieving SBOM data to a component
 
 ### [GET]/health
 
-- Summary
+- Summary  
 Health
 
-- Description
+- Description  
 This health check end point used by Kubernetes
 
 #### Responses
@@ -60,7 +60,7 @@ This health check end point used by Kubernetes
 
 ### [GET]/msapi/textfile
 
-- Summary
+- Summary  
 Get File Content
 
 #### Parameters(Query)
@@ -101,7 +101,7 @@ filetype?: Partial(string) & Partial(null)
 
 ### [POST]/msapi/textfile
 
-- Summary
+- Summary  
 Save File Content
 
 #### RequestBody
