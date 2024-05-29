@@ -19,15 +19,6 @@
       "matchPackagePatterns": [".*"],
       "automerge": true,
       "autoApprove": true
-    },
-    {
-      "matchFiles": ["(^|/)requirements\\.in$"],
-      "postUpgradeTasks": {
-        "commands": [
-          "pip-compile --generate-hashes --resolver=backtracking requirements.in"
-        ],
-        "fileFilters": ["requirements.txt"]
-      }
     }
   ],
   "separateMajorMinor": false,
