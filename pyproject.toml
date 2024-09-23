@@ -17,7 +17,7 @@ requests = "2.32.3"
 pyyaml = "6.0.2"
 certifi = "2024.8.30"
 idna = "3.10"
-starlette = "0.38.5"
+starlette = "0.38.6"
 
 
 [build-system]
