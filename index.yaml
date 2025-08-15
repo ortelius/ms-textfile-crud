@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   ms-textfile-crud:
   - apiVersion: v2
+    appVersion: 10.0.1351
+    created: "2025-08-15T05:06:15.334587398Z"
+    description: Dependency Packages
+    digest: 1dbe29b6c698b1300b6ceb6e97da6f47d7d4ea5482119760be512f5e93d730b6
+    icon: https://ortelius.github.io/ortelius-charts/logo.png
+    name: ms-textfile-crud
+    type: application
+    urls:
+    - https://github.com/ortelius/ms-textfile-crud/releases/download/ms-textfile-crud-10.0.1351/ms-textfile-crud-10.0.1351.tgz
+    version: 10.0.1351
+  - apiVersion: v2
     appVersion: 10.0.1349
     created: "2025-08-14T11:17:15.359354318Z"
     description: Dependency Packages
@@ -4929,4 +4940,4 @@ entries:
     urls:
     - https://github.com/ortelius/ortelius-ms-textfile-crud/releases/download/ms-textfile-crud-10.0.0-build.41/ms-textfile-crud-10.0.0-build.41.tgz
     version: 10.0.0-build.41
-generated: "2025-08-14T11:17:15.358778011Z"
+generated: "2025-08-15T05:06:15.334295219Z"
