@@ -40,6 +40,9 @@ RestAPI endpoint for retrieving SBOM data to a component
 - Summary  
 Health
 
+- Operation id  
+health_health_get
+
 - Description  
 This health check end point used by Kubernetes
 
@@ -49,7 +52,7 @@ This health check end point used by Kubernetes
 
 `application/json`
 
-```ts
+```typescript
 {
   status?: string
   service_name?: string
@@ -63,13 +66,16 @@ This health check end point used by Kubernetes
 - Summary  
 Get File Content
 
+- Operation id  
+get_file_content_msapi_textfile_get
+
 #### Parameters(Query)
 
-```ts
+```typescript
 compid: integer
 ```
 
-```ts
+```typescript
 filetype?: Partial(string) & Partial(null)
 ```
 
@@ -79,7 +85,7 @@ filetype?: Partial(string) & Partial(null)
 
 `application/json`
 
-```ts
+```typescript
 {}
 ```
 
@@ -87,7 +93,7 @@ filetype?: Partial(string) & Partial(null)
 
 `application/json`
 
-```ts
+```typescript
 {
   detail: {
     loc?: Partial(string) & Partial(integer)[]
@@ -104,11 +110,14 @@ filetype?: Partial(string) & Partial(null)
 - Summary  
 Save File Content
 
+- Operation id  
+save_file_content_msapi_textfile_post
+
 #### RequestBody
 
 - application/json
 
-```ts
+```typescript
 {
   compid?: integer
   filetype?: string
@@ -122,7 +131,7 @@ Save File Content
 
 `application/json`
 
-```ts
+```typescript
 {}
 ```
 
@@ -130,7 +139,7 @@ Save File Content
 
 `application/json`
 
-```ts
+```typescript
 {
   detail: {
     loc?: Partial(string) & Partial(integer)[]
@@ -144,7 +153,7 @@ Save File Content
 
 ### #/components/schemas/FileRequest
 
-```ts
+```typescript
 {
   compid?: integer
   filetype?: string
@@ -154,7 +163,7 @@ Save File Content
 
 ### #/components/schemas/HTTPValidationError
 
-```ts
+```typescript
 {
   detail: {
     loc?: Partial(string) & Partial(integer)[]
@@ -166,7 +175,7 @@ Save File Content
 
 ### #/components/schemas/StatusMsg
 
-```ts
+```typescript
 {
   status?: string
   service_name?: string
@@ -175,7 +184,7 @@ Save File Content
 
 ### #/components/schemas/ValidationError
 
-```ts
+```typescript
 {
   loc?: Partial(string) & Partial(integer)[]
   msg: string
